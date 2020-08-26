@@ -1,19 +1,18 @@
 import React from 'react';
 import { useFormState } from 'react-use-form-state';
-import styled  from 'styled-components';
 import { Container, FormTitle, MainTitle, Button } from '../styled/styledForm';
 
 function Invoice({ onSubmit }) {
 
-  const [companyForm, {company, billTo, billFrom, yourName}] = useFormState();
-  const [billForm, {text, item, desc, qty, up, disc, total}] = useFormState();
+  const [invoiceForm, {text, number}] = useFormState();
 
   function handleSubmit(e){
     console.log('Something')
   }
 
   function calculateTotal({ up,  qty, disc}){
-    console.log('something')
+    // const total = unit price * qty
+    // if discount minus discount from total
   }
 
   return(
@@ -29,23 +28,20 @@ function Invoice({ onSubmit }) {
           <input {...text('company')} placeholder="Company Name" required/>
           <input {...text('billTo')} placeholder="Company Address" required />
           <label>Your info</label>
-          <input {...text('yourName')} placeholder="Your Name" reaquired />
+          <input {...text('yourName')} placeholder="Your Name" required />
           <input {...text('billFrom')} placeholder=" Your Billing Address" required />
           
           <FormTitle>Invoice Details: </FormTitle> 
-          <label>Item #</label>
-          <input {...text('item')} placeholder="Item Number"  required />
+          <label>Invoice #</label>
+          <input {...text('invoiceNum')} placeholder="Item Number"  required />
           <label>Description</label>
-          <input {...text('desc')} placeholder="Your Name"  required />
+          <input {...text('desc')} placeholder="Description"  required />
           <label>Qty</label>
-          <input {...text('qty')} placeholder="Quantity"  required />
+          <input {...number('qty')} placeholder="Quantity"  required />
           <label>Unit Price</label>
-          <input {...text('up')} placeholder="Unit Price"  required />
+          <input {...number('up')} placeholder="Unit Price"  required />
           <label>Discount</label>
           <input {...text('disc')} placeholder="Discount"  required />
-          <label>Total</label>
-          <input {...text('total')} placeholder="Total amount due"  required />
-
         <Button>Submit</Button>
     </form>
     </ Container>
